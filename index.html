@@ -1,91 +1,280 @@
-# Next.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delhi.irl — Dilli ka dil, one story at a time</title>
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --bg-card: #1e1e1e;
+      --accent-gold: #e5a93c;
+      --text-main: #f5f5f5;
+      --text-muted: #a0a0a0;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-A modern Next.js 15 application built with TypeScript and Tailwind CSS.
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-## 🚀 Features
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      line-height: 1.6;
+    }
 
-- **Next.js 15** - Latest version with improved performance and features
-- **React 19** - Latest React version with enhanced capabilities
-- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-## 🛠️ Installation
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #2a2a2a;
+      position: sticky;
+      top: 0;
+      background-color: rgba(18, 18, 18, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
 
-1. Install dependencies:
-  ```bash
-  npm install
-  # or
-  yarn install
-  ```
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
 
-2. Start the development server:
-  ```bash
-  npm run dev
-  # or
-  yarn dev
-  ```
-3. Open [http://localhost:4028](http://localhost:4028) with your browser to see the result.
+    .logo span {
+      color: var(--accent-gold);
+    }
 
-## 📁 Project Structure
+    nav a {
+      margin: 0 1rem;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
 
-```
-nextjs/
-├── public/             # Static assets
-├── src/
-│   ├── app/            # App router components
-│   │   ├── layout.tsx  # Root layout component
-│   │   └── page.tsx    # Main page component
-│   ├── components/     # Reusable UI components
-│   ├── styles/         # Global styles and Tailwind configuration
-├── next.config.mjs     # Next.js configuration
-├── package.json        # Project dependencies and scripts
-├── postcss.config.js   # PostCSS configuration
-└── tailwind.config.js  # Tailwind CSS configuration
+    nav a:hover {
+      color: var(--text-main);
+    }
 
-```
+    .btn-outline {
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
 
-## 🧩 Page Editing
+    .btn-outline:hover {
+      background: var(--accent-gold);
+      color: var(--bg-dark);
+    }
 
-You can start editing the page by modifying `src/app/page.tsx`. The page auto-updates as you edit the file.
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 75vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 2rem;
+      background: linear-gradient(180deg, rgba(18,18,18,0.4) 0%, rgba(18,18,18,1) 100%), 
+                  url('https://images.unsplash.com/photo-1676135255039-430e85a422f7') center/cover no-repeat;
+    }
 
-## 🎨 Styling
+    .hero-content {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
 
-This project uses Tailwind CSS for styling with the following features:
-- Utility-first approach for rapid development
-- Custom theme configuration
-- Responsive design utilities
-- PostCSS and Autoprefixer integration
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1rem;
+    }
 
-## 📦 Available Scripts
+    .hero h1 {
+      font-size: 3rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
 
-- `npm run dev` - Start development server on port 4028
-- `npm run build` - Build the application for production
-- `npm run start` - Start the development server
-- `npm run serve` - Start the production server
-- `npm run lint` - Run ESLint to check code quality
-- `npm run lint:fix` - Fix ESLint issues automatically
-- `npm run format` - Format code with Prettier
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 2rem;
+    }
 
-## 📱 Deployment
+    /* Featured Stories Section */
+    .section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-Build the application for production:
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+    }
 
-  ```bash
-  npm run build
-  ```
+    .section-title h2 {
+      font-size: 2rem;
+    }
 
-## 📚 Learn More
+    .section-title span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
 
-To learn more about Next.js, take a look at the following resources:
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial
+    .card {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
 
-You can check out the [Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    .card:hover {
+      transform: translateY(-5px);
+    }
 
-## 🙏 Acknowledgments
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
 
-- Built with [Rocket.new](https://rocket.new)
-- Powered by Next.js and React
-- Styled with Tailwind CSS
+    .card-body {
+      padding: 1.5rem;
+    }
 
-Built with ❤️ on Rocket.new
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #2a2a2a;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer .logo {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">Delhi<span>.irl</span></div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Blog</a>
+      <a href="#">Gallery</a>
+    </nav>
+    <a href="https://www.instagram.com/delhii.irl/" target="_blank" class="btn-outline">Follow Along</a>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">Discover the Real Delhi</span>
+      <h1>Dilli ka dil,<br>one story at a time.</h1>
+      <p>Food trails, hidden alleys, chai corners, and the chaos that makes this city impossible to stop loving.</p>
+      <a href="#" class="btn-outline" style="background: var(--accent-gold); color: var(--bg-dark); font-weight: bold;">Read Stories</a>
+    </div>
+  </section>
+
+  <!-- Featured Stories -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-title">
+        <h2>Featured Stories</h2>
+        <span>Latest from Delhi.irl</span>
+      </div>
+      <a href="#" style="color: var(--accent-gold);">All Stories &rarr;</a>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1676700310590-36d719d9d405" alt="Jalebi" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">Food · Heritage</div>
+          <h3>The Last Halwai of Purani Dilli: Nankhatai, Jalebi & a 90-Year Legacy</h3>
+          <p>Inside the narrow gali off Dariba Kalan, Rameshwar Prasad Gupta still wakes at 4AM to knead dough...</p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1641907694009-663c699ab63f" alt="Agrasen ki Baoli" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">Hidden Gems</div>
+          <h3>Agrasen ki Baoli After the Crowds Leave</h3>
+          <p>Ancient stepwell with symmetrical stone steps descending into darkness, morning light, and eerie calm.</p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1589622572061-a9dfc3ea4620" alt="Chandni Chowk" class="card-img">
+        <div class="card-body">
+          <div class="card-meta">Street Life</div>
+          <h3>Chandni Chowk at 6AM: The City Before It Wakes</h3>
+          <p>Empty Chandni Chowk street at dawn, soft blue morning light, and lone chai vendors setting up.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="logo">Delhi<span>.irl</span></div>
+    <p>Stories from the streets, spices, and soul of Delhi.</p>
+    <p style="margin-top: 1.5rem;">&copy; 2026 Delhi.irl · All rights reserved</p>
+  </footer>
+
+</body>
+</html>
