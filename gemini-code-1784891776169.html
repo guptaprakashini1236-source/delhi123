@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Delhi | Heart of India</title>
+    <style>
+        /* CSS Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-orange: #FF5722;
+            --vibrant-yellow: #FFC107;
+            --royal-purple: #4A148C;
+            --dark-blue: #0D1B2A;
+            --light-bg: #F8F9FA;
+            --text-dark: #2D3748;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            background: rgba(13, 27, 42, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #FFF;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-orange);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #FFF;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--vibrant-yellow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+
+        .search-container input {
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            width: 100%;
+            border-radius: 50px;
+            outline: none;
+        }
+
+        .search-container button {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .search-container button:hover {
+            background: #E64A19;
+        }
+
+        /* Section Container */
+        .section {
+            padding: 5rem 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--dark-blue);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary-orange);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Photo Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 280px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem 1rem 1rem 1rem;
+        }
+
+        /* Video Showcase */
+        .video-section {
+            background: var(--dark-blue);
+            color: white;
+        }
+
+        .video-section .section-title {
+            color: white;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 480px;
+            border: none;
+        }
+
+        /* Contact Area */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-orange);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .contact-form button {
+            background: var(--royal-purple);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #3B0F70;
+        }
+
+        /* Footer */
+        footer {
+            background: #081018;
+            color: #888;
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .nav-links { display: none; }
+            .video-container iframe { height: 260px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">DILWALON KI <span>DELHI</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#video">Experience</a></li>
+            <li><a href="#contact">Get in Touch</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero & Search Section -->
+    <header class="hero" id="home">
+        <h1>Explore The Vibrant Capital</h1>
+        <p>Discover historic monuments, buzzing street markets, and modern wonders.</p>
+        
+        <div class="search-container">
+            <input type="text" placeholder="Search monuments, food, markets (e.g., India Gate, Chandni Chowk)...">
+            <button type="button">Search</button>
+        </div>
+    </header>
+
+    <!-- Picture Gallery Section -->
+    <section class="section" id="gallery">
+        <h2 class="section-title">Visual Highlights</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=600&q=80" alt="India Gate">
+                <div class="gallery-overlay">
+                    <h3>India Gate</h3>
+                    <p>Historic War Memorial</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1592639296346-560c37a0f711?auto=format&fit=crop&w=600&q=80" alt="Humayun's Tomb">
+                <div class="gallery-overlay">
+                    <h3>Humayun's Tomb</h3>
+                    <p>Mughal Architecture Wonder</p>
+                </div>
+            </div>
+            <div class="gallery-card">
+                <img src="https://images.unsplash.com/photo-1608821811634-f655106a77d7?auto=format&fit=crop&w=600&q=80" alt="Qutub Minar">
+                <div class="gallery-overlay">
+                    <h3>Qutub Minar</h3>
+                    <p>World's tallest brick minaret</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="section video-section" id="video">
+        <h2 class="section-title">Feel the Energy</h2>
+        <div class="video-container">
+            <!-- Replace the src URL with your preferred video embed -->
+            <iframe src="https://www.youtube.com/embed/s3fXN_f0x1E" title="Delhi Tourism Video" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Contact Area -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Get in Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Planning a Visit?</h3>
+                <p>Have questions about tours, local food guides, or travel tips? Drop us a line and let us help you plan an unforgettable Delhi adventure.</p>
+                <br>
+                <p><strong>📍 Location:</strong> Connaught Place, New Delhi, India</p>
+                <p><strong>📧 Email:</strong> visit@delhitourism.com</p>
+                <p><strong>📞 Phone:</strong> +91 11 2345 6789</p>
+            </div>
+            
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out!');">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Discover Delhi. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
